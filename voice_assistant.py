@@ -35,3 +35,39 @@ def assistant(command):
         chrome_path = r'C:\Program Files (x86)\Google\Chrome\Application'
         url = 'https://www.reddit.com/r/python'
         webbrowser.get(chrome_path).open(url)
+
+    if "What's up" in command:
+        talktome("Waiting instructions")
+
+    if 'email' in command:
+        talktome('Who is the recipient')
+        recipient = mycommand()
+
+        if 'Rachid' in recipient:
+            talktome('What shoul I say')
+            content = mycommand()
+
+            # init gmail smtp
+            mail = smtplib.SMTP('smtp.gmail.com', 587)
+
+            # Identify to server
+            mail.ehlo()
+
+            # encrypt session
+            mail.starttls()
+
+            # Login
+            mail.login('username', 'password')
+
+            # send message
+            mail.sendmail('PERSON NAME', 'email address@wwww.com', content)
+
+            # close mail connection
+            mail.close()
+
+            talktome("email sent")
+
+talktome("I am ready for your commands")
+
+while True:
+    assistant(mycommand)

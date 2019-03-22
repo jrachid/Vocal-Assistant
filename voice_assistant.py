@@ -13,7 +13,7 @@ def talktome(audio):
 # Listen for commands
 def mycommand():
     r = sr.Recognizer()
-    with sr.Microphone as source:
+    with sr.Microphone() as source:
         print('I am ready for your next command')
         r.pause_threshold = 1
         r.adjust_for_ambient_noise(source, duration =1)
@@ -32,7 +32,7 @@ def mycommand():
 # if statement for executing commands
 def assistant(command):
     if 'open Reddit Python' in command:
-        chrome_path = r'C:\Program Files (x86)\Google\Chrome\Application'
+        chrome_path = "/usr/bin/google-chrome"
         url = 'https://www.reddit.com/r/python'
         webbrowser.get(chrome_path).open(url)
 
@@ -44,7 +44,7 @@ def assistant(command):
         recipient = mycommand()
 
         if 'Rachid' in recipient:
-            talktome('What shoul I say')
+            talktome('What shoul I send')
             content = mycommand()
 
             # init gmail smtp
@@ -70,4 +70,4 @@ def assistant(command):
 talktome("I am ready for your commands")
 
 while True:
-    assistant(mycommand)
+    assistant(mycommand())
